@@ -3,16 +3,24 @@ import {Button, Form} from 'semantic-ui-react';
 
 const ContactForm = (props) =>{
     
-    const[phone, setPhone] = useState('');
-    const [name, setName] = useState('');
+    const[phone, setPhone] = useState(props.phone ? props.phone : '');
+    const [name, setName] = useState(props.name ? props.name : '');
+    const [contact, setContact] = useState({name: "", phone: ""}); 
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("submit");
+        // e.preventDefault();
+        if(props.id){
+          props.editContact({name, phone,id: props.id});
+          props.hideEditForm();
+        }else{
+        props.addContact({name, phone});
+        }
+        setName('');
+        setPhone('');
     };
 
     return (
-    <Form unstackable onSubtmit={handleSubmit}>
+    <Form style={{padding: '7%'}} unstackable onSubmit={handleSubmit}>
     <Form.Group widths={2}>
       <Form.Input 
       name="name" 
@@ -31,7 +39,9 @@ const ContactForm = (props) =>{
       placeholder='Phone' />
     </Form.Group>
     {/* <Form.Checkbox label='I agree to the Terms and Conditions' /> */}
-    <Button type='submit'>Add Contact</Button>
+    <Button style={{marginTop: "20px"}} color="green" type='submit'>{
+    props.id ? "Edit Contact" : "Add Contact"}
+    </Button>
   </Form>
     )
 }
