@@ -3,8 +3,14 @@ import { List } from 'semantic-ui-react';
 const Contacts = ({listOfContacts}) =>{
     let getContacts = () => {
         return listOfContacts.map(c =>{
-            return <Contact />;
+            // return <Contact 
+            // key={c.id}
+            // name={c.name}
+            // phone={c.phone}
+            // />;
+            return <Contact key={c.id} {...c} />;
         });
+        
     }
     return(
         <div>

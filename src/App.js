@@ -6,6 +6,7 @@ import { Header } from 'semantic-ui-react';
 import { Container, Header as Headerz} from 'semantic-ui-react';
 // example of renaming default import
 import ContactList from './ContactList';
+import ContactForm from './ContactForm';
 
 class App extends React.Component {
 
@@ -21,9 +22,10 @@ class App extends React.Component {
 
     //es6 destructing
     const {contacts} = this.state;
-    
+
     return (
       <Container>
+        <ContactForm />
        <Header as='h1'>React Contact List</Header>
        {/* this could get messy */}
        {/* {this.state.contacts.map(c => {
